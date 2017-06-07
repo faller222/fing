@@ -1,0 +1,18 @@
+Hola la idea de este archivo es esplicar Test
+
+
+estaria bueno que le den un vistazo a test 
+
+simplemente lo que hace es cambiar, antes de compilar, unas lineas en los fuentes,
+osea ustedes corren Test y les creara otro archivo igual
+(descuiden el original se conserva, respalden para checkear)
+
+las lineas que cambias son los Define, cosa que no se puede hacer en runtime
+
+
+bueno luego finalmente compila el nuevo archivo y lo ejecuta
+
+quedando en pantalla los tiempos...
+
+
+
