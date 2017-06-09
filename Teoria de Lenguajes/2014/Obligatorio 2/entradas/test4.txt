@@ -1,0 +1,17 @@
+update tablaPacientes
+set obs='';
+
+update tablaPacientes
+set tipo='A'
+where nro=1035;
+
+update tablaPacientes
+set ci = 2356292, cuota=200, obs='Actualizado'
+where cliente = 1045 and tipo='A' and fecha_ingreso <= '31.12.2009';
+
+update tabla_Auxiliar set (pago1,pago2) = (select cuota1, cuota2 from tabla_pagos);
+
+delete from tabla_Pacientes;
+
+delete from tabla_Auxiliar where (pago1 = 180) or (pago2=150 and tipo='C');
+

@@ -1,0 +1,7 @@
+INSERT INTO tabla_socios (nro_socio, tipo_socio, cuota) VALUES (1456123,'categoria_A', 200) ;
+
+INSERT INTO tabla_socio 
+(nro_socio, tipo_socio, cuota) 
+(SELECT nro , tipo, aporte
+ FROM tabla_Aux1, tabla_Aux2
+ WHERE nro = ci and tipo = categoria);

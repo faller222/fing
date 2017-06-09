@@ -1,0 +1,12 @@
+SELECT codigo, precio
+   FROM T_arcituclo
+   WHERE (stock < 5) and (descuento >= 0) and (color = 'negro');
+
+SELECT codigo, precio
+   FROM T_arcituclo
+   WHERE (stock < 5) or  (descuento >=0) or (color = 'negro');
+
+SELECT codigo, descripcion
+   FROM T_articulo
+   WHERE (color = 'rojo') and (precio <= 500) or 
+         (color = 'azul') or (descuento >= 10);

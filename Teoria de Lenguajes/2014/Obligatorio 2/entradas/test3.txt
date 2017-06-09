@@ -1,0 +1,37 @@
+select nombre, apellido
+  from tabla_estudiantes
+  where nota between 60 and 100;
+
+
+select nombre, apellido
+  from tabla_estudiantes
+  where nota not between 0 and 59;
+
+
+select ci, nombre, apellido
+from tabla_estudiantes 
+where nota >= 60
+;
+
+select * from tablaPaciente
+where ( cuota >= 1000  OR tipo <> 'particular') ;
+
+
+select ci, nombre, apellido
+	from tablaPacientes
+	where tipo='socio' and couta=300;
+
+select ci
+   from tabla_socios WHERE cuota = 500 AND EXISTS 
+   ( SELECT * 
+     FROM tabla_deudores
+     WHERE deuda >= 1500);
+
+select codigo from tabla_articulos
+where  accesorios IS NULL and garantia IS NOT NULL ;
+
+
+select ci, deuda, interes(deuda,1,0) 
+from tabla_deudores;
+
+select max(deuda) from tabla_Deudores;

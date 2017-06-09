@@ -1,0 +1,218 @@
+import java_cup.runtime.*;
+import java.io.*;
+
+
+// terminales
+terminal CREATE, INDEX, ON, TABLE, AS, DROP, SELECT, FROM, WHERE;
+terminal INSERT, INTO, UPDATE, SET, EXISTS, DELETE, VALUES, NOT;
+terminal AND, BETWEEN, IS, OR, NULL, VARCHAR, INTEGER, DATE;
+terminal MAS, MENOS, BARRA, ASTERISCO, MENOR, MAYOR, MENORIGUAL;
+terminal MAYORIGUAL, DISTINTO, IGUAL, PUNTOYCOMA;
+terminal COMA, CURIZQ, CURDER, ID, STRING, NUMBER;
+
+
+// no terminales
+
+non terminal sql_program, sql_statement, schema_stm, sql_aux;
+non terminal create_stm, drop_stm, create_table,create_table_as, create_index;
+non terminal decl_param,decl_parametros,data_type,param_st ;
+non terminal drop_table, drop_index,data_stm,data_change_stm;
+non terminal update_stm, update_simple, update_simple_where;
+non terminal exp_comp_set, update_subquery, delete_stm, delete_stm_where;
+non terminal insert_stm, insert_stm_next, select_stm, select_stm_simple;
+non terminal select_stm_where, select_stm_all, exp_set, value_list;
+non terminal expression, term, op_adi, operador_mul, factor, condition;
+non terminal logic_exp,logic_term, logic_factor, complex_expression;
+non terminal simple_exp_null,exists_exp, simple_exp_between;
+non terminal simple_expression, compare_operator, constant;
+
+
+// gramatica
+				
+sql_program		::= sql_aux  sql_program	|
+					sql_aux  
+					{:
+						System.out.println("OK");
+					:};		
+					
+sql_aux		::=	sql_statement PUNTOYCOMA 	
+					{:
+						System.out.println("---");
+					:};		
+													
+sql_statement	::=	schema_stm 
+						{:
+						System.out.println("DECLARACION DE ESQUEMA");
+						:}
+					|
+						data_stm {:
+						System.out.println("DECLARACION DE DATOS");
+						:}
+					;	
+
+schema_stm		::= create_stm | drop_stm ;
+
+create_stm 		::= create_table | create_table_as | create_index ;
+
+create_table 	::= CREATE TABLE ID CURIZQ decl_parametros CURDER 
+					{:
+						System.out.println("CREACION DE TABLA");
+					:};
+
+decl_parametros	::= decl_param 	|
+					decl_param  COMA decl_parametros
+					;
+					
+decl_param 		::= ID data_type ;
+ 
+data_type		::= INTEGER|VARCHAR|DATE ;
+
+create_table_as ::= CREATE TABLE ID AS CURIZQ select_stm CURDER 
+{:
+						System.out.println("CREACION DE TABLA CON SELECT");
+					:};
+
+
+create_index 	::= CREATE INDEX ID ON ID CURIZQ param_st CURDER
+					{:
+						System.out.println("CREACION DE INDICE");
+					:};
+
+param_st 		::= ID  COMA param_st	|
+					ID 
+					{:  
+						 System.out.println("LISTA DE IDENTIFICADORES");					
+					:};
+					
+drop_stm 		::= drop_table | drop_index ;
+
+drop_table 		::= DROP TABLE ID 
+					{:  
+						System.out.println("ELIMINACION DE TABLA");
+					:};
+					
+drop_index ::= DROP INDEX ID
+					{:  
+						System.out.println("ELIMINACION DE INDICE");
+					:};
+					
+data_stm ::= data_change_stm | select_stm ;					
+					
+data_change_stm ::= update_stm | delete_stm | delete_stm_where | insert_stm ;			
+
+update_stm ::= update_simple | update_simple_where | update_subquery ;
+					
+update_simple ::= UPDATE ID SET exp_comp_set 
+					{:  
+						System.out.println("ACTUALIZACION SIMPLE");
+					:};
+
+update_simple_where ::= UPDATE ID SET exp_comp_set WHERE condition 
+					{:  
+						System.out.println("ACTUALIZACION SIMPLE CONDICIONAL");
+					:};
+ 
+exp_comp_set ::= ID IGUAL expression COMA exp_comp_set |ID IGUAL expression 
+					{:  
+						System.out.println("LISTA DE ( ID = EXPRESSION )");
+					:};
+
+update_subquery ::= UPDATE ID SET CURIZQ param_st CURDER IGUAL CURIZQ select_stm CURDER
+					{:  
+						System.out.println("ACTUALIZACION CON SELECT");
+					:};
+
+delete_stm ::= DELETE FROM ID 
+					{:  
+						System.out.println("ELIMINACION DE FILAS");
+					:};
+
+delete_stm_where ::= DELETE FROM ID WHERE condition 
+					{:  
+						System.out.println("ELIMINACION DE FILAS CONDICIONAL");
+					:};
+
+insert_stm ::= INSERT INTO ID CURIZQ param_st CURDER insert_stm_next ;
+
+insert_stm_next ::= value_list
+					{:  
+						System.out.println("INSERCION DE FILA");					
+					:} 
+					| CURIZQ select_stm CURDER 
+					{:  
+						System.out.println("INSERCION DE FILAS CON SELECT");					
+					:} ; 
+
+select_stm ::= select_stm_simple | select_stm_where ;
+
+select_stm_simple ::= SELECT select_stm_all FROM param_st
+					{:  
+						System.out.println("SELECCION DE FILAS");					
+					:};
+ 
+select_stm_where ::= SELECT select_stm_all FROM param_st WHERE condition 
+					{:  
+						System.out.println("SELECCION DE FILAS CONDICIONAL");					
+					:};
+
+select_stm_all ::= exp_set | ASTERISCO ;
+	
+exp_set ::= expression COMA exp_set | expression ;										
+
+value_list ::= VALUES CURIZQ exp_set CURDER ;
+
+expression ::= term | expression op_adi term ;
+
+term ::= factor | term operador_mul factor ;
+
+op_adi ::= 	MAS | MENOS ;
+			
+operador_mul ::= ASTERISCO | BARRA ;	
+
+factor ::= constant | ID | ID CURIZQ exp_set CURDER ;	
+
+condition ::= logic_exp	| NOT logic_exp ;		
+
+logic_exp ::= logic_term | logic_exp OR logic_term {:  
+						System.out.println("OR");					
+					:};
+
+logic_term ::= logic_factor |  logic_term AND logic_factor {:  
+						System.out.println("AND");					
+					:};
+
+logic_factor ::= complex_expression | simple_exp_null | exists_exp | simple_exp_between  | CURIZQ condition CURDER ;
+
+complex_expression ::= simple_expression | simple_expression compare_operator complex_expression ;
+
+simple_exp_null ::= simple_expression IS NOT NULL {:  
+							System.out.println("NO ES NULL");					
+						:}
+						| simple_expression IS NULL 
+						{:  
+							System.out.println("ES NULL");					
+						:};
+
+exists_exp ::= EXISTS CURIZQ select_stm CURDER{:  
+							System.out.println("EXISTE");					
+						:} ;
+
+simple_exp_between ::= simple_expression NOT BETWEEN simple_expression AND simple_expression 
+						{:  
+							System.out.println("NO ENTRE");					
+						:}
+						| simple_expression BETWEEN simple_expression AND simple_expression
+						{:  
+							System.out.println("ENTRE");					
+						:}; 
+
+simple_expression ::= ID | constant ;
+
+compare_operator ::= IGUAL | MENOR | MAYOR | DISTINTO | MENORIGUAL | MAYORIGUAL ; 
+
+constant ::= STRING {:  
+						 System.out.println("CONSTANTE CADENA DE CARACTERES");					
+					:}
+			| NUMBER {:  
+						 System.out.println("CONSTANTE NUMERO");					
+					:};

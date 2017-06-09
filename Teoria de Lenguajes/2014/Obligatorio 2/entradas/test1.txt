@@ -1,0 +1,12 @@
+CREATE TABLE tablaPacientes
+(nro Integer, nombre VARCHAR, apellido VARCHAR, ci INTEGER, tipo VARCHAR, fecha_ingreso date, obs VARCHAR);
+
+CREATE TABLE tablaPacientesAux AS ( select * from tablaPacientes );
+
+create index indexPacientes on tablaPacientes (nro, ci, fecha_ingreso);
+
+DROP INDEX indexPacientes ;
+
+DROP TABLE tablaPacientes ; 
+
+DROP TABLE tablaPacientesAux; 
