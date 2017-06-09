@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<level>
+    <obstacle obsId="0" x="99" y="53" />
+    <obstacle obsId="1" x="146" y="22" />
+    <obstacle obsId="2" x="211" y="37" />
+    <obstacle obsId="3" x="261" y="43" />
+</level>
