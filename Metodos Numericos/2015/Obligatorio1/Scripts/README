@@ -1,0 +1,44 @@
+El archivo adjunto contiene los siguientes archivos:
+
+aux_mat2.m
+  este script genera una matriz de prueba y un vector aleatorio 
+  recibe como parametros el tamaño de la martiz 
+  y la probabilidad de que en una celda haya un 1
+  Usado para simular la matriz de adyacencias
+  [vec,mat] = aux_mat2(tam,P)
+
+gen_Pt.m
+  este script genera una matriz estocastica por columnas
+  recibe como parametro una matriz
+  [Pt] = gen_Pt(A)
+  
+web_surfer.m
+  este script genera una matriz aplicando la hipotesis del surfista web
+  recibe como parametros una matriz y la probabilidad de salto
+  [B] = web_surfer(A,p)
+  
+Potencia.m, Sistema.m
+  Estos script son los pedios en el obligatorio 
+  Recibe los parametros:
+    vec : vector inicial
+    A : Matriz
+    min_diff : minima diferencia exijida
+    max_iter : maximas iteraciones permitidas
+  Retorna
+    val_p : Valor propio dominante de la matriz A
+    vec_p : Vector propio asociado al valor propio
+  [vec_p,val_p] = Potencia( vec, A, min_diff, max_iter )
+  [vec_p,val_p] = Sistema ( vec, A, min_diff, max_iter )
+
+Tester.m
+  Script usado para las pruebas de los scripts anteriores
+  Recibe como parametros
+    Iter : maximas iteraciones permitidas
+    Error : minima diferencia exijida
+    Tam : Tamaño de la matriz a probar
+  Retorna
+    Diff : Maxima diferencia de los elementos de los vectores calculados por ambos metodos
+  
+  [Diff] = Tester( Iter,Error,Tam )
+    
+    
