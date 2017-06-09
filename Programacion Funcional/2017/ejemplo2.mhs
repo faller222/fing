@@ -1,0 +1,4 @@
+cuad :: (Int) -> Int
+cuad(x) = x * x
+
+main = 24 + cuad(2)
