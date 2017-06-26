@@ -1,0 +1,7 @@
+fun :: (Int,Int,Bool) -> Bool
+fun (x,y,b) = if x > z then w /= (y + yy)
+                       else bbbbb
+
+main = if ((funcion (4,2,True) == fn (2,2,False)) /= f (5,2,False))
+       then g
+       else 10

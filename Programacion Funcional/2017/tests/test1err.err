@@ -1,0 +1,6 @@
+Expected: integer Actual: boolean
+Expected: integer Actual: boolean
+Expected: boolean Actual: integer
+Expected: integer Actual: boolean
+The number of arguments in the application of: f doesn't match the signature (1 vs 2)
+Expected: integer Actual: boolean

@@ -1,0 +1,13 @@
+f :: (Int,Int,Int) -> Int
+f(x,y,x) = (let x :: Int = let x :: Int = let x :: Int = x + 3
+                                          in  x + 2
+                           in x + 1
+            in  let y :: Int = y + 4
+                in  x + y + z) +
+           (let z :: Int = 9 in x + y + z)
+
+f :: (Int) -> Int
+f(x) = let x :: Int = x + 2
+       in  x + 3
+
+main = f(10,5,2) + g(9)

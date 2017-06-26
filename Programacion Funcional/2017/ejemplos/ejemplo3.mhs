@@ -1,0 +1,4 @@
+foo :: (Int,Bool) -> Int
+foo(x,y) = if y then x * x else x + 2
+
+main = 24 + foo(2,True) + foo(3,False)

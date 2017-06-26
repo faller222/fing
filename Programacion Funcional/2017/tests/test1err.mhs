@@ -1,0 +1,10 @@
+f :: (Int,Bool) -> Int
+f(x,y) = let x :: Int = x > 10 
+         in  if x == y then let y :: Bool = 30
+                            in  y + 2
+                       else 10
+
+g :: (Int) -> Int
+g(x) = f(x) + f(x * 2,True)
+
+main = g(True)  

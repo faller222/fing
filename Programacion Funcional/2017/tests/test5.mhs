@@ -1,0 +1,7 @@
+f :: (Int,Bool,Int,Bool) -> Int
+f (x,b,y,c) = if b then x else if c then y else x + y
+
+g :: (Int,Int) -> Bool
+g(x,y) = (x * 2) <= (y div 2)
+
+main = f(10,g(10,20),20,g(10,40))
