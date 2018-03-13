@@ -1,0 +1,4 @@
+Optimizar parte 1 por costos
+Optimizar por cada fuente, restringiendo a las aristas del problema anterior (COTA SUPERIOR)
+Optimizar por cada fuente, con las aristas originales (COTA INFERIOR)
+Perturbar valores, calcular delays y descartar los que no esten en el margen

@@ -1,0 +1,30 @@
+#En este problema, el nodo "Centro" es el 1, y las terminales son de 2 a 7.
+#La cantidad de líneas por terminal ahora es: 2(para 2), 1 (para 3 y 4), 2 (para 5) y 1 (para 6 y 7).
+#Los delays a usar en la parte 3, ordenados por código de terminal son: 5071, 3565, 4558, 5071, 3565 y 4558.
+
+#debug.eneable=true
+seed=
+ruido=100
+
+inicializacion=2
+inicializacion.try=200
+inicializacion.pop.size=200
+
+ae.cant.generaciones=25
+ae.cant.generaciones.invariantes=25
+
+seleccion=1
+seleccion.factor=10000000
+
+cruzamiento=1
+cruzamiento.prob=50
+cruzamiento.cant=13
+
+mutacion=1
+mutacion.prob=10
+mutacion.ruido=100
+
+cantSumideros=1
+cantFuentes=6
+especiales=0;2;1;1;2;1;1
+delays=0;5071;3565;4558;5071;3565;4558

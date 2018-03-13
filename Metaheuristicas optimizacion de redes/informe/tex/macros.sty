@@ -1,0 +1,214 @@
+
+% MACROS PARA EL CURSO DE LOGICA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\isLogic}{-2px}   % Separación entre los items, partes, etc.
+\newcommand{\psLogic}{-2px}  %Separación entre párrafos
+\newenvironment{nota}{\footnotesize\textbf{Nota:}}{}
+
+\DeclareTextFontCommand{\enfasis}{\bfseries\itshape}
+
+%\renewcommand{\dot}[1]{{#1}'}
+\newcommand{\prima}[1]{{#1}'}
+% Metadefiniciones
+%%\newcommand{\isDefinedAs}[2]{{#1}\quad:=\quad{#2}}
+\newcommand{\isDefinedAs}[2]{{#1}:={#2}}
+\newcommand{\app}[2]{#1 (#2)}
+
+% Igualdad en el lenguaje
+\newcommand{\eqL}{='}
+% Definicion
+\newcommand{\eqdef}{\vcentcolon=}
+
+%%% Nociones semanticas
+% Equivalencia
+\newcommand{\eq}{\mathrel{\texttt{eq}}}
+% Consecuencia
+\newcommand{\mlcons}{\models}
+\newcommand{\mlder}{\vdash}
+% Interpretaciones
+\newcommand{\interpL}[2]{#2^{#1}}
+\newcommand{\interpT}[2]{#2^{#1}}
+\newcommand{\interpF}[2]{v^{#1}(#2)}
+
+% Tuplas y conjuntos
+\newcommand{\mlsep}{\mid}
+\newcommand{\mlsetSep}{:}
+\newcommand{\tupla}[1]{\ensuremath{\left\langle #1 \right\rangle}}
+\newcommand{\conj}[1]{\ensuremath{\left\{ #1 \right\}}}
+\newcommand{\conjU}[2]{\ensuremath{\left\{ #1 \mlsetSep #2 \right\}}}
+\newcommand{\tuple}{\tupla}
+
+% Conjuntos habituales
+\newcommand{\nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\rational}{\ensuremath{\mathbb{Q}}}
+\newcommand{\rat}{\ensuremath{\mathbb{Q}}}
+\newcommand{\real}{\ensuremath{\mathbb{R}}}
+\renewcommand{\int}{\ensuremath{\mathbb{Z}}}
+
+% Tipo de similaridad
+\newcommand{\tipo}[3]{\tuple {#1; #2; #3}}
+
+% Justificaciones y pruebas
+\newenvironment{pruebaInline}
+               {\begin{array}{l}}
+               {\end{array}}
+\newenvironment{prueba}
+               {\begin{displaymath}\begin{pruebaInline}}
+               {\end{pruebaInline}\end{displaymath}}
+\newcommand{\justtxt}[1]{\mbox{\scriptsize (#1)}}
+\newcommand{\just}[1]{\justtxt{\ensuremath{#1}}}
+
+% Letras griegas
+\renewcommand{\phi}{\varphi}
+\newcommand{\eps}{\varepsilon}
+
+% Letras cursivas mayúsculas
+\newcommand{\mlscr}[1]{\ensuremath{\mathcal #1}}
+\newcommand{\mA}{\mlscr A}
+\newcommand{\mB}{\mlscr B}
+\newcommand{\mC}{\mlscr C}
+\newcommand{\mD}{\mlscr D}
+\newcommand{\mF}{\mlscr F}
+\newcommand{\mH}{\mlscr H}
+\newcommand{\mI}{\mlscr I}
+\newcommand{\mJ}{\mlscr J}
+\newcommand{\mL}{\mlscr L}
+\newcommand{\mM}{\mlscr M}
+\newcommand{\mN}{\mlscr N}
+\newcommand{\mP}{\mlscr P}
+\newcommand{\mQ}{\mlscr Q}
+\newcommand{\mS}{\mlscr S}
+\newcommand{\mT}{\mlscr T}
+\newcommand{\mZ}{\mlscr Z}
+
+% Nombres de lenguajes
+\newcommand{\Nom}[1]{\ensuremath {{\texttt {#1}}}}
+\newcommand{\TAUTO}{\Nom{TAUTO}}
+\newcommand{\PROP}{\Nom{PROP}}
+\newcommand{\PRED}{\Nom{PRED}}
+\newcommand{\FORM}{\Nom{FORM}}
+\newcommand{\SENT}{\Nom{SENT}}
+\newcommand{\TERM}{\Nom{TERM}}
+\newcommand{\TERMC}{\ensuremath{\Nom{TERM}_C}}
+\newcommand{\DER}{\Nom{DER}}
+\newcommand{\Th}{\mathit{Th}}
+\newcommand{\Mod}{\mathit{Mod}}
+
+% Nombres de funciones
+\newcommand{\nmfun}[1]{\textsc{#1}}
+\newcommand{\FV}{\nmfun{FV}}
+\newcommand{\BV}{\nmfun{BV}}
+\newcommand{\Cons}{\nmfun{Cons}}
+
+% Simbolos de la metalogica
+\newcommand{\mltxt}[1]{\textnormal{#1}}
+\newcommand{\mlforall}[2]{\ensuremath{(\bar\forall #1) #2}}
+\newcommand{\mlexists}[2]{\ensuremath{(\bar\exists #1) #2}}
+\newcommand{\mlforallELBUENO}[3]{\ensuremath{(\bar\forall #1 : #2 : #3)}}
+\newcommand{\mlexistsELBUENO}[3]{\ensuremath{(\bar\exists #1 : #2 : #3)}}
+\newcommand{\mliff}{\Leftrightarrow}
+\newcommand{\mlif}{\Leftarrow}
+\newcommand{\mlthen}{\Rightarrow}
+
+\newcommand{\mlite}[3]{\mltxt{si }#1\mltxt{ entonces }#2\mltxt{ sino }#3}
+\newcommand{\mlit}[2]{\mltxt{si }#1\mltxt{ entonces }#2}
+\newcommand{\mland}{\mltxt{ y }}
+\newcommand{\mlor}{\mltxt{ o }}
+\newcommand{\mlnot}{\mltxt{no }}
+
+% Constantes logicas
+\newcommand{\lexists}{\exists}
+\newcommand{\lforall}{\forall}
+\newcommand{\liff}{\leftrightarrow}
+\newcommand{\lthen}{\rightarrow}
+\newcommand{\sheffer}{\mid}
+\newcommand{\nii}{\downarrow}
+
+% Reglas
+\newcounter{cntreglas}
+\newenvironment{reglas}
+               {\begin{list}{\roman{cntreglas}}
+               {\usecounter{cntreglas}\setlength{\itemsep}{0pc}}}
+               {\end{list}}
+
+% Definicion de funciones, con informacion adicional opcional
+\newenvironment{defFun}[1][]
+               {\ifthenelse{\equal{#1}{}}
+                 {\begin{array}{l@{\ =\ }l}}
+                 {\begin{array}{l@{\ =\ }l} \multicolumn{2}{l}{#1} \\ }}
+               {\end{array}}
+
+% Parrafos
+\addtolength{\parskip}{\psLogic}
+% Partes y subpartes
+\newenvironment{partes}{\setlength{\parskip}{0cm}\leavevmode\begin{enumerate}[a.]\itemsep=\isLogic}{\end{enumerate}}
+\newenvironment{subpartes}{\setlength{\parskip}{0cm}\begin{enumerate}[i.]\itemsep=\isLogic}{\end{enumerate}}
+\newenvironment{subsubpartes}{\setlength{\parskip}{0cm}\begin{enumerate}[1.]\itemsep=\isLogic}{\end{enumerate}}
+
+%% DIBUJOS DE ARBOLES
+
+% *************************
+% Arboles
+% ******************************
+\newcommand{\arbolwidth}{6}
+\newcommand{\arbolheight}{7}
+\newcommand{\arbolcatuno}{3}
+\newcommand{\arbolcatdos}{4}
+\newcommand{\arbolhipot}{5}
+\newcommand{\arbolbase}{-3}
+\newcommand{\arbolbasefml}{-2}
+\newcommand{\arbolhypline}{6}
+\newcommand{\arbolhypheight}{10}
+\newcommand{\arbolbasename}{3}
+\newcommand{\bolarheight}{4}
+\newcommand{\bolarbase}{0}
+\newcommand{\bolarbasename}{1}
+
+\newcommand{\arbolConNombre}[3][.4pc]{
+\setlength{\unitlength}{#1}
+\parbox[c]{\arbolwidth\unitlength}
+{\begin{picture}
+(\arbolwidth,\arbolheight)(-\arbolcatuno,\arbolbase)
+\put(0,0){\line(-\arbolcatuno,\arbolcatdos){\arbolcatuno}}
+\put(0,0){\line(\arbolcatuno,\arbolcatdos){\arbolcatuno}}
+\put(0,\arbolcatdos){\line(1,0){\arbolcatuno}}
+\put(0,\arbolcatdos){\line(-1,0){\arbolcatuno}}
+\put(0,\arbolbasename){\makebox(0,0)[c]{\ensuremath{#3}}}
+\put(0,\arbolbasefml){\makebox(0,0)[c]{\ensuremath{#2}}}
+\end{picture}}
+\setlength{\unitlength}{1pt}}
+
+\newcommand{\arbolHipConNombre}[4][.4pc]{
+\setlength{\unitlength}{#1}
+\parbox[c]{\arbolwidth\unitlength}
+{\begin{picture}
+(\arbolwidth,\arbolhypheight)(-\arbolcatuno,\arbolbase)
+\put(0,0){\line(-\arbolcatuno,\arbolcatdos){\arbolcatuno}}
+\put(0,0){\line(\arbolcatuno,\arbolcatdos){\arbolcatuno}}
+\put(0,\arbolbasename){\makebox(0,0)[c]{\ensuremath{#3}}}
+\put(0,\arbolbasefml){\makebox(0,0)[c]{\ensuremath{#2}}}
+\put(0,\arbolhypline){\makebox(0,0)[c]{\ensuremath{#4}}}
+\end{picture}}
+\setlength{\unitlength}{1pt}}
+
+\newcommand{\arbol}[2][.4pc]{\arbolConNombre[#1]{#2}{}}
+\newcommand{\arbolHip}[3][.4pc]{\arbolHipConNombre[#1]{#2}{}{#3}}
+
+\newcommand{\bolarConNombre}[2][.4pc]{
+\setlength{\unitlength}{#1}
+\parbox[c]{\arbolwidth\unitlength}
+{\begin{picture}
+(\arbolwidth,\bolarheight)(-\arbolcatuno,\bolarbase)
+\put(0,\arbolcatdos){\line(-\arbolcatuno,-\arbolcatdos){\arbolcatuno}}
+\put(0,\arbolcatdos){\line(\arbolcatuno,-\arbolcatdos){\arbolcatuno}}
+\put(0,0){\line(1,0){\arbolcatuno}}
+\put(0,0){\line(-1,0){\arbolcatuno}}
+\put(0,\bolarbasename){\makebox(0,0)[c]{\ensuremath{#2}}}
+\end{picture}}
+\setlength{\unitlength}{1pt}}
+
+\newcommand{\bolar}[2][.4pc]{\bolarConNombre[#1]{#2}}
+
+\newcommand{\hip}[1]{\textbf{H)} #1}
+\newcommand{\tesis}[1]{\textbf{T)} #1}
+\newcommand{\dem}[1]{\\ \textbf{Dem.} #1 \\ $\blacksquare$}

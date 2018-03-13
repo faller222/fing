@@ -1,0 +1,150 @@
+\RequirePackage{xcolor}
+\newif\ifnotasdoc@inline
+\newif\ifnotasdoc@fancyline
+\newif\ifnotasdoc@notodo
+\newif\ifnotasdoc@disabled
+% %\DeclareOption{conNotas}{\notasdoc@enabledtrue}
+%\DeclareOption{sinNotas}{\notasdoc@enabledfalse}
+\DeclareOption{disable}{\notasdoc@disabledtrue}
+\DeclareOption{notodo}{\notasdoc@notodotrue}
+\DeclareOption{inline}{\notasdoc@inlinetrue}
+\DeclareOption{noinline}{\notasdoc@inlinefalse}
+\DeclareOption{fancyline}{\notasdoc@fancylinetrue}
+%\DeclareOption{fancyline}{\PassOptionToPackage{\CurrentOption}{todonotes}}
+%\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{todonotes}}
+%\ExecuteOptions{spanish,textwidth=3cm,textsize=footnotesize}
+
+\ProcessOptions\relax
+
+\usepackage{ifthen}
+
+\DeclareRobustCommand{\imline*}[1]{\begin{multline*}
+                                    #1
+                                   \end{multline*}
+}
+
+
+\ifthenelse{\boolean{notasdoc@notodo}}{
+ \ifthenelse{\boolean{notasdoc@disabled}}{
+  \newcommand{\inote}[2][]{}
+  \newcommand{\ihlnote}[3][]{}  
+ }{
+ \RequirePackage{fancybox}
+ \RequirePackage{xcolor}
+ \RequirePackage{pgfkeys}
+\newlength{\outboxsep}
+
+ \newcommand{\inote}[2][]{
+  \pgfkeys{/notasDoc/.cd,
+  author/.initial={},
+  color/.initial=white,
+  #1
+  }
+  
+  \fcolorbox{\pgfkeysvalueof{/notasDoc/color}!black!40}{\pgfkeysvalueof{/notasDoc/color}}{
+        \setlength{\outboxsep}{\fboxsep}
+        \ovalbox{\hspace{1em}\begin{minipage}{\dimexpr\linewidth-3em-2pt\relax}
+		\pgfkeysvalueof{/notasDoc/author}: #2
+	\end{minipage}	
+    }
+  }
+ }
+ \newcommand{\ihlnote}[3][]{\hl{#2}\inote[#1]{#3}}  
+}}{
+\ifnotasdoc@disabled
+\usepackage[disabled]{todonotes}
+\else
+\usepackage{todonotes}
+\fi
+\ifnotasdoc@inline
+\presetkeys{todonotes}{inline}{}
+\fi
+\ifnotasdoc@fancyline
+\presetkeys{todonotes}{fancyline}{}
+\fi
+
+
+
+%%% Algunos ajustes del todo
+
+%%% Algunos ajustes del todo
+
+  \ifthenelse{\boolean{@todonotes@disabled}}{%\extrawidth{20mm}
+    \newcommand{\inote}[2][]{}
+    \newcommand{\ihlnote}[3][]{#2}  
+  }{%\extrawidth{-10mm}
+    \newcommand{\inote}[2][]{\todo[backgroundcolor=aquaverde,linecolor=lineaquaverde,#1]{#2}}
+    \newcommand{\ihlnote}[3][]{\hl{#2}\todo[backgroundcolor=aquaverde,linecolor=lineaquaverde,#1]{#3}}  
+
+  \renewcommand{\@todonotes@drawMarginNoteWithLine}{%
+  \ifthenelse{\boolean{@todonotes@localdisable}}{}{
+\begin{tikzpicture}[remember picture, overlay, baseline=-0.75ex]%
+    \node [coordinate] (inText) {};%
+\end{tikzpicture}%
+\marginpar[{% Draw note in left margin
+    \@todonotes@drawMarginNote%
+    \@todonotes@drawLineToLeftMargin%
+}]{% Draw note in right margin
+    \@todonotes@drawMarginNote%
+    \@todonotes@drawLineToRightMargin%
+}%
+}%
+}
+  
+  
+\renewcommand{\@todonotes@drawLineToRightMargin}{%
+\if@todonotes@line%
+\if@todonotes@fancyline%
+\tikz[remember picture,overlay]{%
+\tikzstyle{both}=[line width=3pt, draw=\@todonotes@currentlinecolor, opacity=0.45]%
+\tikzstyle{line}=[shorten >=5pt, line cap=round]%
+\tikzstyle{head}=[shorten >=-1pt, dash pattern=on 0pt off 1pt, ->]%
+\foreach \s in {line,head}{%
+\draw[both,\s]%
+(inNote.north west).. controls +(0:0) and +(90:1.5)..([yshift=1ex] inText);%
+};%
+}%
+\else%
+\begin{tikzpicture}[remember picture, overlay]%
+\draw[connectstyle]%
+([yshift=-0.2cm] inText)%
+-| ([xshift=-0.2cm] inNote.west)%
+-| (inNote.west);%
+\end{tikzpicture}%
+\fi%
+\fi}%
+}
+  % Agrego el color al fancyline
+
+  % Si se carga todonotes, se usa todonotes para inote y ihlnote .
+%    \newcommand{\inote}[2][]{\todo[backgroundcolor=aquaverde,linecolor=lineaquaverde,#1]{#2}}
+%    \newcommand{\ihlnote}[3][]{\hl{#2}\todo[backgroundcolor=aquaverde,linecolor=lineaquaverde,#1]{#3}}  
+
+}
+
+%%%%% Comandos personalizados para notas
+\newcommand{\fchlnote}[3][]{\ihlnote[author=Fdo,color=teal!25,#1]{#2}{#3}}
+\newcommand{\fcnote}[2][]{\inote[author=Fdo,color=teal!25,#1]{#2}}
+
+\newcommand{\lshlnote}[3][]{\ihlnote[author=Luis,color=green!25,#1]{#2}{#3}}
+\newcommand{\lsnote}[2][]{\inote[author=Luis,color=green!25,#1]{#2}}
+
+\newcommand{\jdhlnote}[3][]{\ihlnote[author=JD,color=yellow!35,#1]{#2}{#3}}
+\newcommand{\jdnote}[2][]{\inote[author=JD,color=yellow!35,#1]{#2}}
+
+\newcommand{\rrhlnote}[3][]{\ihlnote[author=Romina,color=red!40,#1]{#2}{#3}}
+\newcommand{\rrnote}[2][]{\inote[author=Romina,color=red!40,#1]{#2}}
+
+\newcommand{\cshlnote}[3][]{\ihlnote[author=Camila,color=brown!40,#1]{#2}{#3}}
+\newcommand{\csnote}[2][]{\inote[author=Camila,color=brown!40,#1]{#2}}
+
+%\newcommand{\sghlnote}[3][]{\ihlnote[author=Seba,color=cyan!40,#1]{#2}{#3}}
+%\newcommand{\sgnote}[2][]{\inote[author=Seba,color=cyan!40,#1]{#2}}
+
+\newcommand{\mmhlnote}[3][]{\ihlnote[author=Mónica,color=violet!25,#1]{#2}{#3}}
+\newcommand{\mmnote}[2][]{\inote[author=Mónica,color=violet!25,#1]{#2}}
+
+\newcommand{\jphlnote}[3][]{\ihlnote[author=John,color=blue!25,#1]{#2}{#3}}
+\newcommand{\jpnote}[2][]{\inote[author=John,color=blue!25,#1]{#2}}
+%\newcommand{\mchlnote}[3][]{\ihlnote[author=Matías,color=orange!50;#1]{#2}{#3}}
+%\newcommand{\mconote}[2][]{\inote[author=Matías,color=orange!50;#1]{#2}}

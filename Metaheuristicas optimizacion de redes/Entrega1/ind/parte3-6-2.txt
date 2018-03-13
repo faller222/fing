@@ -1,0 +1,24 @@
+# Created by Octave 4.2.1, Sat Oct 28 18:18:39 2017 GMT <unknown@unknown>
+# name: estructura
+# type: matrix
+# rows: 17
+# columns: 2
+ 6 29
+ 6 30
+ 6 43
+ 26 33
+ 30 42
+ 42 49
+ 43 45
+ 45 46
+ 46 47
+ 47 50
+ 50 51
+ 2 33
+ 3 49
+ 3 51
+ 26 27
+ 27 28
+ 28 29
+
+
