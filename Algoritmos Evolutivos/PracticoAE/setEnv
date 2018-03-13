@@ -1,0 +1,15 @@
+#!/bin/sh
+# Script setEnv
+# Se ejecuta ./setEnv
+
+
+#Seteo del CLASSPATH
+pos=$(pwd)'/*:'
+export CLASSPATH="$pos"
+
+make
+
+chmod +x ejercicio2
+chmod +x cutgen1
+
+./cutgen1 5 100 0.1 0.8 20 2017 instancia_ejemplo

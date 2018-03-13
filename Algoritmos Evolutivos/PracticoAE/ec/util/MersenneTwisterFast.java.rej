@@ -1,0 +1,33 @@
+***************
+*** 481,495 ****
+              } 
+          while(bits - val + (n-1) < 0);
+          return val;
+          }
+  
+      /** This method is for completness' sake. 
+          Returns a long drawn uniformly from 0 to n-1.  Suffice it to say,
+-         n must be > 0, or an IllegalArgumentException is raised. */
+      
+      public long nextLong(long n) 
+          {
+          if (n<=0)
+              throw new IllegalArgumentException("n must be positive, got: " + n);
+          
+          long bits, val;
+--- 481,495 ----
+              } 
+          while(bits - val + (n-1) < 0);
+          return val;
+          }
+  
+      /** This method is for completness' sake. 
+          Returns a long drawn uniformly from 0 to n-1.  Suffice it to say,
++         n must be greater than 0, or an IllegalArgumentException is raised. */
+      
+      public long nextLong(long n) 
+          {
+          if (n<=0)
+              throw new IllegalArgumentException("n must be positive, got: " + n);
+          
+          long bits, val;

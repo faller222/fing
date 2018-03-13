@@ -1,0 +1,18 @@
+#!/bin/sh
+# Script Ejercicio 2
+# Se ejecuta ./ejercicio2 <instancia> <solucion>
+
+#./cutgen1 5 100 0.1 0.8 20 2017 instancia_ejemplo
+
+# leer instancia y preparar instancia y configuracion
+java Ej2 init $1
+
+# ejecucion de AE
+java ec.Evolve -file ec/app/Practico1/practico1.params
+# java ec.Evolve -file ec/app/Practico2/practico2.params -p seed.0=10000
+
+# escritura de solucion
+java Ej2 fin $2
+
+# fin
+exit 0

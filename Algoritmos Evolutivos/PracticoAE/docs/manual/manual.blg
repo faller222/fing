@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: manual.aux
+The style file: plain.bst
+Database file #1: manual.bib
+Warning--empty publisher in Luke2009Metaheuristics
+You've used 29 entries,
+            2118 wiz_defined-function locations,
+            674 strings with 9698 characters,
+and the built_in function-call counts, 11473 in all, are:
+= -- 1113
+> -- 562
+< -- 15
++ -- 217
+- -- 178
+* -- 786
+:= -- 1832
+add.period$ -- 98
+call.type$ -- 29
+change.case$ -- 144
+chr.to.int$ -- 0
+cite$ -- 30
+duplicate$ -- 475
+empty$ -- 906
+format.name$ -- 178
+if$ -- 2486
+int.to.chr$ -- 0
+int.to.str$ -- 29
+missing$ -- 32
+newline$ -- 149
+num.names$ -- 72
+pop$ -- 189
+preamble$ -- 1
+purify$ -- 121
+quote$ -- 0
+skip$ -- 354
+stack$ -- 0
+substring$ -- 721
+swap$ -- 152
+text.length$ -- 15
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 106
+warning$ -- 1
+while$ -- 119
+width$ -- 31
+write$ -- 332
+(There was 1 warning)
