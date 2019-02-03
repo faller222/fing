@@ -1,0 +1,40 @@
+{def h1}
+h1 = f >>= \x ->
+     g3 >>= \z ->
+     return (x,z)
+
+{def f _ f = (g1 >>= \x -> g2 >>= \y -> return x)}
+h1 = (g1 >>= \x -> g2 >>= \y -> return x) >>= \x ->
+     g3 >>= \z ->
+     return (x,z)
+
+tomando f'=(\x -> g2 >>= \y -> return x) (el 'f' de la ley monadica)
+{leyes monadicas _ (m >>= f ) >>= g = m >>= \x -> (f x >>= g)}
+h1 = g1 >>= \x -> (\x' -> g2 >>= \y -> return x') x >>= \x ->
+     g3 >>= \z ->
+     return (x,z)
+
+{aplicación _ \x' }
+h1 = g1 >>= \x ->
+     g2 >>= \y -> return x >>= \x -> g3 >>= \z ->
+     return (x,z)
+
+tomando f'=(\x -> g3 >>= \z -> return (x,z)) (el 'f' de la ley monadica)
+{leyes monadicas _ return x >>= f = f x}
+h1 = g1 >>= \x ->
+     g2 >>= \y -> (\x -> g3 >>= \z ->
+     return (x,z)) x
+
+{aplicación _ \x }
+h1 = g1 >>= \x ->
+     g2 >>= \y ->
+     g3 >>= \z ->
+     return (x,z)
+
+{def h2}
+h1 = h2
+
+Sea M = Maybe con g1 = g3 = Just (_), g2 = Nothing
+=>
+h1 = h2 = Nothing
+h3 = Just (_,_)

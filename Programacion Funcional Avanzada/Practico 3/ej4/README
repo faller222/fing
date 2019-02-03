@@ -1,0 +1,67 @@
+data Failing e a = Success a | Failure e
+    deriving (Functor, Show)
+
+instance Monoid e => Applicative (Failing e) where
+    pure a                      = Success a
+    Success f <*> Success a     = Success (f a)
+    Failure e <*> Success       = Failure e
+    Success <*> Failure e       = Failure e
+    Failure e <*> Failure e0    = Failure (e `mappend` e0)
+
+Identidad: pure id <*> u == u
+
+pure id <*> Success a
+== Success id <*> Success a {def pure}
+== Success (id a)           {def <*>}
+== Success a                {def id}
+
+pure id <*> Failure e
+== Success id <*> Failure e {def pure}
+== Failure e                {def <*>}
+
+
+Composición: pure (.) <*> u <*> v <*> w == u <*> (v <*> w)
+
+pure (.) <*> Success a <*> Success b <*> Success c
+== Success (.) <*> Success a <*> Success b <*> Success c    {def pure}
+== Success (a .) <*> Success b <*> Success c                {def <*>}
+== Success (a . b) <*> Success c                            {def <*>}
+== Success (a . b . c)                                      {def <*>}
+== Success (a .(b . c))                                     {prop asoc}
+== Success a <*> Success (b c)                              {def <*>}
+== Success a <*> (Success b <*> Success c)                  {def <*>}
+
+pure (.) <*> Failure a <*> Failure b <*> Failure c
+== Success (.) <*> Failure a <*> Failure b <*> Failure c    {def pure}
+== Failure a <*> Failure b <*> Failure c                    {def <*>}
+== Failure (a `mappend` b) <*> Failure c                    {def <*>}
+== Failure (a `mappend` b `mappend` c)                      {def <*>}
+--------------------------------------------------------------------------
+Failure a <*> (Failure b <*> Failure c)
+== Failure a <*> Failure (b `mappend` c)                    {def <*>}
+== Failure (a `mappend` (b `mappend` c))                    {def <*>}
+-------------------------------------------------------------------------- {asoc mappend}
+Failure (a `mappend` b `mappend` c) == Failure (a `mappend` (b `mappend` c))
+
+
+Homomorfismo: pure f <*> pure x == pure (f x)
+¿? donde entra Failing en esta demostracion
+
+
+Intercambio: u <*> pure x == pure (\f -> f x) <*> u
+
+pure (\f -> f x) <*> Success a
+== Success (\f -> f x) <*> Success a    {def pure}
+== Success ((\f -> f x) a)              {def <*>}
+== Success (a x)                        {app \f}
+== Success a <*> Success x              {def <*>}
+== Success a <*> pure x                 {def pure}
+
+
+pure (\f -> f b) <*> Failure e
+== Success (\f -> f b) <*> Failure e    {def pure}
+== Failure e                            {def <*>}
+--------------------------------------------------------------------------
+Failure e <*> pure b
+== Failure e <*> Success b              {def pure}
+== Failure e                            {def <*>}

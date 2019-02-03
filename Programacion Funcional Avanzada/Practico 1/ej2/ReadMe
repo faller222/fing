@@ -1,0 +1,4 @@
+El modulo B no compila correctamente, ya que no importa de A el tipo T, pero adeamas de eso, A no lo exporta.
+
+Si se quiere cambiar algo en B para que compile, habria que eliminar el uso de la funcion foo, ya que usa el tipo T y no tenemos acceso a el.
+Ademas de eliminar los uso del tipo T.

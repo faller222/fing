@@ -1,0 +1,19 @@
+hpc report Recorre.exe.tix
+
+ 72% expressions used (48/66)
+ 50% boolean coverage (1/2)
+      50% guards (1/2), 1 always True
+     100% 'if' conditions (0/0)
+     100% qualifiers (0/0)
+ 44% alternatives used (4/9)
+100% local declarations used (1/1)
+ 83% top-level declarations used (5/6)
+
+hpc markup Recorre.exe.tix
+
+Writing: Main.hs.html
+Writing: hpc_index.html
+Writing: hpc_index_fun.html
+Writing: hpc_index_alt.html
+Writing: hpc_index_exp.html
+

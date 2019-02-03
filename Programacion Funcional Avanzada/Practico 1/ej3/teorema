@@ -1,0 +1,40 @@
+forall (t :: Tree a). length (flatten t) == size t
+
+# Induccion en t
+
+# Paso Base, tree Empry
+length (flatten Empty) == size Empty
+
+--Definicion de size
+length (flatten Empty) == 0
+
+--Definicion de flatten
+length ([]) == 0
+
+--Definicion de length
+0 == 0
+
+
+# Paso inductivo
+H1) length (flatten l) == size l
+H2) length (flatten r) == size r
+=> length (flatten (Node l a r)) == size (Node l a r)
+
+--Definicion de size
+length (flatten (Node l a r)) == size l + 1 + size r
+
+--Definicion flatten
+length (flatten l ++ [a] ++ flatten r) == size l + 1 + size r
+
+--Definicion ++
+length (flatten l ++ a:flatten r) == size  l + 1 + size  r
+
+--Aplicar lema
+length (flatten l) + length  (a:flatten r) == size  l + 1 + size  r
+
+--Definicion length
+length (flatten l) + 1 + length (flatten r) == size  l + 1 + size  r
+
+--Aplicar H1 y H2
+length (flatten l) + 1 + length (flatten r)) == length (flatten l) + 1 + length (flatten r)
+

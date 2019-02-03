@@ -1,0 +1,34 @@
+forall (xs :: [a]) (ys :: [a]). length (xs ++ ys) == length xs + length ys
+
+# Induccion en xs
+
+# Paso Base
+
+length ([] ++ ys ) == length [] + length ys
+
+--Definicion de (++)
+length (ys) == length [] + length ys
+
+--Definicion de length
+length ys == 0 + length ys
+
+--Definicion de +
+length ys == length ys
+
+
+# Paso Inductivo
+
+H) length (xs ++ ys ) == length xs + length ys
+=> length ((a:xs) ++ ys ) == length (a:xs) + length ys
+
+--Definicion de length
+length ((a:xs) ++ ys ) == 1 + length xs + length ys
+
+--Aplicar Hipotesis
+length ((a:xs) ++ ys ) == 1 + length (xs ++ ys)
+
+--Definicion de (++)
+length ( a:(xs ++ ys) ) == 1 + length (xs ++ ys)
+
+--Definicion de length
+1 + length (xs ++ ys) == 1 + length (xs ++ ys)

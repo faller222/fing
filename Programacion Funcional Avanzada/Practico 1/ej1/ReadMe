@@ -1,0 +1,3 @@
+El modulo A exporta el Tipo abstracto S y el modulo B
+
+Al alcance del modulo A esta todo el prelude, el Tipo T con su clase D, que sera ambiguo con la clase D del Tipo S

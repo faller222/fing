@@ -1,0 +1,26 @@
+	Fri Sep 14 04:54 2018 Time and Allocation Profiling Report  (Final)
+
+	   a1.exe +RTS -p -K500M -RTS
+
+	total time  =        0.00 secs   (0 ticks @ 1000 us, 1 processor)
+	total alloc =   1,969,296 bytes  (excludes profiling overheads)
+
+COST CENTRE MODULE           SRC              %time %alloc
+
+main        Main             a1.hs:2:1-28       0.0   81.9
+f           Main             a1.hs:4:1-23       0.0   16.3
+CAF         GHC.IO.Handle.FD <entire-module>    0.0    1.8
+
+
+                                                                        individual      inherited
+COST CENTRE MODULE                   SRC             no.     entries  %time %alloc   %time %alloc
+
+MAIN        MAIN                     <built-in>       39          0    0.0    0.0     0.0  100.0
+ CAF        GHC.IO.Encoding.CodePage <entire-module>  63          0    0.0    0.0     0.0    0.0
+ CAF        GHC.IO.Encoding          <entire-module>  60          0    0.0    0.0     0.0    0.0
+ CAF        GHC.IO.Handle.Text       <entire-module>  58          0    0.0    0.0     0.0    0.0
+ CAF        GHC.IO.Handle.FD         <entire-module>  53          0    0.0    1.8     0.0    1.8
+ CAF        Main                     <entire-module>  46          0    0.0    0.0     0.0   98.2
+  f         Main                     a1.hs:4:1-23     79          1    0.0    0.0     0.0    0.0
+  main      Main                     a1.hs:2:1-28     78          1    0.0   81.9     0.0   98.2
+   f        Main                     a1.hs:4:1-23     80          0    0.0   16.2     0.0   16.2

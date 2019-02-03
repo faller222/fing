@@ -1,0 +1,21 @@
+Se genero un archivo con texto de ejemplo y algunos numeros al azar.
+El archivo mide mas de 5mb.
+Luego se activo la flag s, para mostrar el tiemo de ejecucion y uso de memoria
+
+String
+encode "C:\\Users\\faller222\\Desktop\\PFA\\Practico 2\\ej3\\text" "C:\\Users\\faller222\\funcional.txt"
+(95.09 secs, 18,589,989,392 bytes)
+
+decode "C:\\Users\\faller222\\funcional.txt" "C:\\Users\\faller222\\funcionaldeco.txt"
+(40.41 secs, 15,294,113,392 bytes)
+
+
+ByteString
+encode "C:\\Users\\faller222\\Desktop\\PFA\\Practico 2\\ej3\\text" "C:\\Users\\faller222\\funcionalBS.txt"
+(37.69 secs, 16,509,384,672 bytes)
+
+decode "C:\\Users\\faller222\\funcionalBS.txt" "C:\\Users\\faller222\\funcionaldecoBS.txt"
+(25.64 secs, 10,073,148,808 bytes)
+
+
+

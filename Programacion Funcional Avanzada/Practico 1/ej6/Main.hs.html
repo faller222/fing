@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=CP850">
+<style type="text/css">
+span.lineno { color: white; background: #aaaaaa; border-right: solid white 12px }
+span.nottickedoff { background: yellow}
+span.istickedoff { background: white }
+span.tickonlyfalse { margin: -1px; border: 1px solid #f20913; background: #f20913 }
+span.tickonlytrue  { margin: -1px; border: 1px solid #60de51; background: #60de51 }
+span.funcount { font-size: small; color: orange; z-index: 2; position: absolute; right: 20 }
+span.decl { font-weight: bold }
+span.spaces    { background: white }
+</style>
+</head>
+<body>
+<pre>
+<span class="lineno">    1 </span>data Arbol a = Vacio | Nodo (Arbol a) a (Arbol a)
+<span class="lineno">    2 </span>
+<span class="lineno">    3 </span><span class="decl"><span class="istickedoff">genera = fst $ generaAux 0</span>
+<span class="lineno">    4 </span><span class="spaces">    </span><span class="istickedoff">where generaAux n = let (l , n1 ) = generaAux (n + 1)</span>
+<span class="lineno">    5 </span><span class="spaces">                            </span><span class="istickedoff">(r , n2) = <span class="nottickedoff">generaAux n1</span></span>
+<span class="lineno">    6 </span><span class="spaces">                        </span><span class="istickedoff">in (Nodo l n <span class="nottickedoff">r</span> , <span class="nottickedoff">n2</span>)</span></span>
+<span class="lineno">    7 </span>
+<span class="lineno">    8 </span><span class="decl"><span class="istickedoff">recorreL (Nodo l x _ ) = x : recorreL l</span>
+<span class="lineno">    9 </span><span class="spaces"></span><span class="istickedoff">recorreL Vacio = <span class="nottickedoff">[]</span></span></span>
+<span class="lineno">   10 </span>
+<span class="lineno">   11 </span><span class="decl"><span class="istickedoff">recorreR (Nodo _ x r ) = x : <span class="nottickedoff">recorreR r</span></span>
+<span class="lineno">   12 </span><span class="spaces"></span><span class="istickedoff">recorreR Vacio = <span class="nottickedoff">[]</span></span></span>
+<span class="lineno">   13 </span>
+<span class="lineno">   14 </span><span class="decl"><span class="nottickedoff">recorre (Nodo l x r ) = recorre l ++ [x] ++ recorre r</span>
+<span class="lineno">   15 </span><span class="spaces"></span><span class="nottickedoff">recorre Vacio = []</span></span>
+<span class="lineno">   16 </span>
+<span class="lineno">   17 </span><span class="decl"><span class="istickedoff">take1 _ [] = <span class="nottickedoff">[]</span></span>
+<span class="lineno">   18 </span><span class="spaces"></span><span class="istickedoff">take1 n (x : xs) | n &gt; 0 = x : take1 (n - 1) xs</span>
+<span class="lineno">   19 </span><span class="spaces">                 </span><span class="istickedoff">| <span class="tickonlytrue">otherwise</span> = []</span></span>
+<span class="lineno">   20 </span><span class="decl"><span class="istickedoff">main = do print (take1 5 . tail . recorreL $ genera)</span>
+<span class="lineno">   21 </span><span class="spaces">          </span><span class="istickedoff">print (head $ zip (recorreL genera) (recorreR genera))</span></span>
+
+</pre>
+</body>
+</html>

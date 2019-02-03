@@ -1,0 +1,3 @@
+La representacion arbitraria en este caso no refleja todos los casos ya que los arboles con este generador quedan "balaceados".
+Una funcion splitAt random length pudo ser mas adecuada. Luego de generar los arboles ejecuta la propiedad para ver que todos los arboles generados la cumplan.
+En este caso todos los arboles cumplen todas las propiedades
