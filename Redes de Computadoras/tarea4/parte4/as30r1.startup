@@ -1,0 +1,16 @@
+ifconfig eth0 192.168.0.10 netmask 255.255.255.252 broadcast 192.168.0.11 up
+
+ifconfig eth1 up
+
+vconfig add eth1 10 # Agrega VLAN 10 al puerto 1
+vconfig add eth1 20 # Agrega VLAN 20 al puerto 1
+
+ifconfig eth1.10 up # Activa interface pto1.vlan1
+ifconfig eth1.20 up # Activa interface pto2.vlan2
+
+
+ifconfig eth1.10 10.23.30.1 netmask 255.255.255.128 broadcast 10.23.30.127 up
+ifconfig eth1.20 10.23.30.129 netmask 255.255.255.192 broadcast 10.23.30.191 up
+
+
+#/etc/init.d/zebra start

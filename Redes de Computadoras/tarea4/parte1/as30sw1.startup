@@ -1,0 +1,28 @@
+# http://www.microhowto.info/howto/configure_an_ethernet_interface_as_a_vlan_trunk_on_debian.html
+ifconfig eth0 up
+ifconfig eth1 up
+ifconfig eth2 up
+ifconfig eth3 up
+
+ifconfig eth0 hw ether 00:00:00:00:01:00 # MAC switch 1 port 0
+ifconfig eth1 hw ether 00:00:00:00:01:01 # MAC switch 1 port 1
+ifconfig eth2 hw ether 00:00:00:00:01:02 # MAC switch 1 port 2
+ifconfig eth3 hw ether 00:00:00:00:01:03 # MAC switch 1 port 3
+
+
+apt-get install vlan  # Agrega soporte de VLANs al kernel
+vconfig add eth1 10   # Agrega VLAN 10 al puerto 1
+vconfig add eth2 10   # Agrega VLAN 10 al puerto 2
+vconfig add eth3 20   # Agrega VLAN 20 al puerto 3
+ifconfig eth1.10 up   # Activa interface pto1.vlan10
+ifconfig eth2.10 up   # Activa interface pto2.vlan10
+ifconfig eth3.20 up   # Activa interface pto3.vlan20
+
+brctl addbr br10       # Crea bridge br10 (asociado a Trunk)
+brctl addif br10 eth0  # Agrega el puerto 0 al bridge br10
+brctl addif br10 eth1.10  # Agrega el pto1.vlan10 al bridge br10
+brctl addif br10 eth2.10  # Agrega el pto2.vlan10 al bridge br10
+brctl addif br10 eth3.20  # Agrega el pto3.vlan20 al bridge br10
+brctl stp br10 on      # Activa el STP en el bridge br10
+ifconfig br10 up       # Activa interface br10
+

@@ -1,0 +1,13 @@
+.idea
+**/.idea
+
+**/cmake-build-debug
+**/CMakeFiles
+
+**/CMakeCache.txt
+**/Makefile
+**/cmake_install.cmake
+
+#Ejecutables
+/cliente/cliente
+/servidor/servidor

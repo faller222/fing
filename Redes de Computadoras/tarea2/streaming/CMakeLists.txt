@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 2.8)
+project( Tarea2 )
+find_package( OpenCV REQUIRED )
+set(CMAKE_BUILD_TYPE Debug)
+add_executable( servidor server_udp.cc )
+target_link_libraries( servidor ${OpenCV_LIBS} )
+add_executable( cliente client_udp.cc )
+target_link_libraries( cliente ${OpenCV_LIBS} )

@@ -1,0 +1,17 @@
+*~
+**/.DS_Store
+**/.faces-config.xml.jsfdia
+**/MANIFEST.MF
+
+**/*.factorypath
+**/.idea/
+**/target
+**/*.iml
+**/*.attach_pid*
+**/*.project
+**/*.settings
+**/*.classpath
+**/*.aside
+**/*.xml.versionsBackup
+**/*.log
+**/*.class
